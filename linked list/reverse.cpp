@@ -42,17 +42,19 @@ class node{
     void push(node* head){
         node* temp=head;
     }
-    void reverse(node* head){
+    node* reverse(node* head){
         node* cur = head;
         node* pre=NULL;
-        node* next=NULL;
+        node* next_node=NULL;
         while(cur!=NULL){
-            next=cur->next;
+            
+            next_node=cur->next;
             cur->next=pre;
             pre=cur;
-            cur=next;
+            cur=next_node;
         }
         head=pre;
+        return head;
     }
 
 int main(){
@@ -63,7 +65,7 @@ int main(){
     addAtTail(head,6);
     cout<<"Linked list before :"<<endl;
     display(head);
-    reverse(head);
+    head = reverse(head);
     cout<<"Linked list after :"<<endl;
     display(head);
 }
