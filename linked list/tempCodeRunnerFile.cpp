@@ -31,9 +31,6 @@ class node{
         n->next=head;
         head=n;
     }
-    void deleteTail(node* head){
-        
-    }
     void display(node* head){
         node* temp=head;
         while(temp!=NULL){
@@ -45,20 +42,9 @@ class node{
 
 int main(){
     node* head=NULL;
-    int i=4;
-    while(i==4){
-        cout<<"What do you want to do ?"<<endl;
-        cout<<"1.Push       2.Pop       3.Display"<<endl;
-        cin>>i;
-    }
     node s(4);
-    int j=1;
-    while(j==1){
-        int u;
-        cout<<"Enter the elements of the linked list: ";
-        cin>>u;
-        addAtTail(head,u);
-        cout<<"Want to enter more(1/0) : ";
-    }
+    addAtHead(head,5);
+    addAtTail(head,3);
+    addAtHead(head,6);
     display(head);
 }
