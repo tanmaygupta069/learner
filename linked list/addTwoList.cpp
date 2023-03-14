@@ -39,25 +39,41 @@ void display(node* head){
     }
     cout<<"NULL"<<endl;
 }
+node* reverse(node* head){
+    node* curr = head;
+    node* prev = NULL;
+    node* next = NULL;
+    while(curr!=NULL){
+        next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+    }
+    head=prev;
+    return head;
+}
 node* addTwoList(node* head1, node* head2){
-    node* temp=head1;
-    int num1=0;
-    while(temp!=NULL){
-        num1=num1*10+temp->data;
+    node* newhead1 = reverse(head1);
+    node* newhead2 = reverse(head2);
+    node* res = NULL;
+    node* prev = NULL;
+    int carry = 0;
+    while(newhead1!=NULL || newhead2!=NULL){
+        int c = ((newhead1->data + newhead2->data) % 10)+carry;
+        carry = (newhead1->data + newhead2->data)/10;
+        node* newhead3 = new node(c);
+        if(res==NULL){
+            res=newhead3;
+        }
+        else{
+            prev->next=newhead3;
+        }
+        prev=newhead3;
+        newhead1=newhead1->next;
+        newhead2=newhead2->next;
     }
-    temp=head2;
-    int num2=0;
-    while(temp!=NULL){
-        num2=num2*10+temp->data;
-    }
-    int add=num1+num2;
-    node* head3 = NULL;
-    while(add){
-        int rem = add % 10;
-        addHead(head3,rem);
-        add=add/10;
-    }
-    return head3;
+    return reverse(res);
+
 }
 int main(){
     node* head =NULL;
